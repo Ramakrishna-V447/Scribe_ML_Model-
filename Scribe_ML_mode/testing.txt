@@ -1,0 +1,206 @@
+Medical Audio Transcription System
+Model Testing Guide
+==================================
+
+
+1. Transcription Accuracy Testing (Word Error Rate - WER)
+---------------------------------------------------------
+
+Objective:
+Measure how accurately the Whisper transcription model converts speech into text.
+
+Testing Procedure:
+1. Prepare a set of medical conversation audio recordings.
+2. Create manual ground truth transcripts for each recording.
+3. Run the Medical Audio Transcription System on the audio files.
+4. Compare the generated transcripts with the ground truth.
+
+WER Formula:
+
+WER = (Substitutions + Deletions + Insertions) / Total Reference Words × 100
+
+Evaluation Criteria:
+- Lower WER indicates better transcription accuracy.
+- Compare WER across different audio conditions.
+
+Example:
+Ground Truth:
+"I have chest pain for three days."
+
+Model Output:
+"I have chest pain three days."
+
+Error:
+Deletion of the word "for"
+
+WER = 1 / 7 × 100 = 14.3%
+
+
+---------------------------------------------------------
+
+2. Speaker Identification Testing
+---------------------------------
+
+Objective:
+Evaluate whether the system correctly identifies Doctor and Patient speakers.
+
+Testing Procedure:
+1. Prepare audio recordings with known speaker labels.
+2. Compare predicted speaker labels against actual labels.
+3. Calculate speaker classification accuracy.
+
+Formula:
+
+Speaker Accuracy =
+(Number of Correct Speaker Labels / Total Number of Segments) × 100
+
+
+Example:
+
+Total Segments: 100
+Correct Predictions: 92
+
+Speaker Accuracy = 92%
+
+
+---------------------------------------------------------
+
+3. End-to-End System Testing
+----------------------------
+
+Objective:
+Test the complete application workflow.
+
+Test Cases:
+
+1. WAV audio upload
+Expected Result:
+- Audio uploads successfully and generates transcript.
+
+2. MP3/M4A/OGG upload
+Expected Result:
+- Supported formats process correctly.
+
+3. Long recordings (>30 minutes)
+Expected Result:
+- System completes processing without crashing.
+
+4. Short audio recordings (<5 seconds)
+Expected Result:
+- System handles short segments gracefully.
+
+5. Two-speaker conversation
+Expected Result:
+- Doctor and Patient are identified correctly.
+
+6. Single speaker audio
+Expected Result:
+- System does not fail and returns a transcript.
+
+7. Noisy recordings
+Expected Result:
+- Produces a readable transcript with acceptable accuracy.
+
+8. Different accents
+Expected Result:
+- Maintains reasonable transcription performance.
+
+
+---------------------------------------------------------
+
+4. Processing Speed Testing
+---------------------------
+
+Objective:
+Measure how efficiently the system processes audio.
+
+Metrics:
+- Total processing time
+- CPU/GPU utilization
+- Memory usage
+- Real Time Factor (RTF)
+
+Formula:
+
+RTF = Processing Time / Audio Duration
+
+
+Example:
+
+Audio Length: 10 minutes
+Processing Time: 5 minutes
+
+RTF = 0.5
+
+Interpretation:
+RTF < 1  : Faster than real time
+RTF = 1  : Real-time processing
+RTF > 1  : Slower than real time
+
+
+---------------------------------------------------------
+
+5. Medical Vocabulary Accuracy Testing
+--------------------------------------
+
+Objective:
+Evaluate recognition accuracy for medical terminology.
+
+Example Medical Terms:
+- Hypertension
+- Diabetes
+- Myocardial Infarction
+- Aspirin
+- Tachycardia
+- Blood Pressure
+
+
+Formula:
+
+Medical Term Accuracy =
+(Number of Correct Medical Terms / Total Medical Terms) × 100
+
+
+---------------------------------------------------------
+
+6. Noise Robustness Testing
+---------------------------
+
+Test the model under different audio conditions:
+
+- Clean clinical recordings
+- Background conversations
+- Keyboard sounds
+- Air conditioning noise
+- Low-quality microphones
+
+
+Example Results:
+
+Clean Audio:
+WER = 12%
+
+Light Noise:
+WER = 15%
+
+Heavy Noise:
+WER = 30%
+
+
+---------------------------------------------------------
+
+7. Audio Format Compatibility Testing
+-------------------------------------
+
+Verify support for:
+
+- WAV
+- MP3
+- M4A
+- OGG
+
+Check:
+- File upload success
+- Correct audio conversion
+- Consistent transcription quality
+
